@@ -8,7 +8,7 @@ from numpy import array
 curPath = os.path.abspath(os.path.dirname(__file__))
 rootPath = os.path.split(curPath)[0]
 sys.path.append(rootPath)
-from bandit.run_and_getconfig_qos import app_refer_id as ben_id
+from run_and_getconfig_qos import app_refer_id as ben_id
 # Info: store history data
 
 def ben_cor_id():
@@ -30,7 +30,7 @@ app_refer_id = {"specjbb":0, "masstree":1, "xapian":2, "sphinx":3, "moses":4, "i
                'swaptions':11
 }
 
-def save_file(app_id,load_list,reward,context,core_list,llc_config,mb_config):
+def save_file(app_id,load_list,th_reward,fair_reward,context,core_list,llc_config,mb_config):
     out_list = []
     app_num_id =[]
     add_zero = [0 for i in range(7-len(app_id))]
@@ -56,7 +56,8 @@ def save_file(app_id,load_list,reward,context,core_list,llc_config,mb_config):
     out_list.extend([i+1 for i in llc_config])
     out_list.extend(add_zero)
     out_list.extend([i+1 for i in mb_config])
-    out_list.append(reward)
+    out_list.append(th_reward)
+    out_list.append(fair_reward)
 
 
     return out_list
